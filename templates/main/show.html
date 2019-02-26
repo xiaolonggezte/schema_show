@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> 错误页面显示 </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        {% block style %}{% endblock %}
+    </style>
+  </head>
+
+  <body>
+  <div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                {% if error_type == 1 %}
+                    <h2>错误信息</h2>
+                    <b>{{ ex }}</b>
+                    <br/>
+
+                    Failed validating <b>{{ validator }}</b> in schema<b>{{ schema_index }}</b>:
+                    <br/>
+
+                {% else %}
+                    <h2>错误信息</h2>
+                    <br/>
+                    Unknown type <b>{{ ex }}</b> for validator with schema:
+                    <br/>
+                {% endif %}
+            </div>
+            <div>
+                <h2>原始数据</h2>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                {% if error_type == 1 %}
+                    <textarea class="form-control" rows="15">{{ schema }}
+                    </textarea>
+                    <br/>
+                    On instance<b>{{ key }}</b>:
+                    <br>
+                    <b>{{ value }}</b>
+                {% else %}
+                    <textarea class="form-control" rows="15">{{ schema }}
+                    </textarea>
+                    <br/>
+
+                    While checking instance:
+                    <br/>
+                    <b>{{ instance }}</b>
+                    <br/>
+
+                {% endif %}
+            </div>
+            <div class="col-md-5">
+                <textarea class="form-control" rows="15">{{ raw_data }}
+                </textarea>
+            </div>
+        </div>
+    </div>
+  </div>
+  </body>
+</html>
