@@ -14,14 +14,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <style>
-        {% block style %}{% endblock %}
-    </style>
   </head>
 
   <body>
   <div class="jumbotron">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-5">
                 {% if error_type == 1 %}
@@ -39,7 +36,7 @@
                     <br/>
                 {% endif %}
             </div>
-            <div>
+            <div class="col-md-5">
                 <h2>原始数据</h2>
             </div>
 
