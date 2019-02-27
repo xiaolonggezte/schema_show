@@ -9,6 +9,7 @@ def schema_show(request, filename):
     filename = '/mnt/tango/log/cd.byted.org/json_schema/' + filename
     with open(filename, 'r') as f:
         msg = f.read()
+    msg = msg.decode('gbk').encode('utf-8')
     type = 1
     context = {}
     msg, raw_data = msg.split('原始数据\n:', 1)
